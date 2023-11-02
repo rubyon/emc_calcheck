@@ -25,9 +25,9 @@
               <td><%= mark.middle %></td>
               <td><%= mark.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
               <td><a href="<%= edit_cal_mark_path(mark) %>">수정</a></td>
-              <td><%= link_to "Destroy", cal_mark_path(mark), data: {
+              <td><%= link_to "삭제", cal_mark_path(mark), data: {
                 turbo_method: :delete,
-                turbo_confirm: "Are you sure?"
+                turbo_confirm: "정말 삭제 하시겠습니까?"
               } %></td>
               <td><%= check_box_tag "use[#{mark.id}]", 'true', mark.use, class: 'mark-checkbox' %></td>
             </tr>

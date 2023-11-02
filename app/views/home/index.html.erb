@@ -5,7 +5,7 @@
     <div id="kt_app_content_container" class="app-container container-fluid">
 
       <!--begin::Row-->
-      <div class="row g-3 gx-xl-3 mb-10 mb-xl-10">
+      <div class="row g-3 gx-xl-3 mb-5 mb-xl-5">
         <!--begin::Overlay-->
         <div class="overlay">
           <!--begin::Image-->
@@ -44,7 +44,7 @@
             </div>
             <!--end::Header-->
             <!--begin::Card body-->
-            <div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
+            <div class="card-body pt-2 pb-5 d-flex flex-wrap align-items-center">
               <!--begin::Labels-->
               <div class="d-flex flex-column content-justify-center flex-row-fluid">
                 <!--begin::Label-->
@@ -53,10 +53,10 @@
                   <div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
                   <!--end::Bullet-->
                   <!--begin::Label-->
-                  <div class="text-success flex-grow-1 me-4 fw-bold">저 발열량&nbsp;&nbsp;&#128293;</div>
+                  <div class="fs-5 text-success flex-grow-1 me-4 fw-bold">저 발열량&nbsp;&nbsp;&#128293;</div>
                   <!--end::Label-->
                   <!--begin::Stats-->
-                  <div class="fw-bolder text-gray-300 text-xxl-end">0 부터 <%= @range.low %> 이하</div>
+                  <div class="fs-5 fw-bolder text-gray-300 text-xxl-end">0 부터 <%= @range.low %> 이하</div>
                   <!--end::Stats-->
                 </div>
                 <!--end::Label-->
@@ -66,10 +66,10 @@
                   <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
                   <!--end::Bullet-->
                   <!--begin::Label-->
-                  <div class="text-primary flex-grow-1 me-4 fw-bold">중 발열량&nbsp;&nbsp;&#128293;&#128293;</div>
+                  <div class="fs-5 text-primary flex-grow-1 me-4 fw-bold">중 발열량&nbsp;&nbsp;&#128293;&#128293;</div>
                   <!--end::Label-->
                   <!--begin::Stats-->
-                  <div class="fw-bolder text-gray-300 text-xxl-end"><%= @range.low + 1 %> 부터 <%= @range.middle %>이하
+                  <div class="fs-5 fw-bolder text-gray-300 text-xxl-end"><%= @range.low + 1 %> 부터 <%= @range.middle %>이하
                   </div>
                   <!--end::Stats-->
                 </div>
@@ -80,10 +80,10 @@
                   <div class="bullet w-8px h-3px rounded-2 bg-warning me-3"></div>
                   <!--end::Bullet-->
                   <!--begin::Label-->
-                  <div class="text-warning flex-grow-1 me-4 fw-bold">고 발열량&nbsp;&nbsp;&#128293;&#128293;&#128293;</div>
+                  <div class="fs-5 text-warning flex-grow-1 me-4 fw-bold">고 발열량&nbsp;&nbsp;&#128293;&#128293;&#128293;</div>
                   <!--end::Label-->
                   <!--begin::Stats-->
-                  <div class="fw-bolder text-gray-300 text-xxl-end"><%= @range.middle + 1 %> 이상</div>
+                  <div class="fs-5 fw-bolder text-gray-300 text-xxl-end"><%= @range.middle + 1 %> 이상</div>
                   <!--end::Stats-->
                 </div>
                 <!--end::Label-->
@@ -121,44 +121,40 @@
                 <!--end::Amount-->
                 <!--begin::Subtitle-->
                 <span class="text-gray-700 pt-1 fw-semibold fs-6 lh-xxl">
-                      <span class="badge badge-outline badge-primary fs-base">
-                        수분 <%= element.w if !element.nil? %>
-                      </span>
-                      <span class="badge badge-outline badge-danger fs-base">
-                        가연분 <%= element.f if !element.nil? %>
-                      </span>
-                      <span class="badge badge-outline badge-success fs-base">
-                        회분 <%= element.a if !element.nil? %>
-                      </span>
-                      <br/>
-                      <span class="badge badge-dark fs-base">
-                        C: <%= element.c if !element.nil? %>
-                      </span>
-                      <span class="badge badge-secondary fs-base">
-                        H: <%= element.h if !element.nil? %>
-                      </span>
-                      <span class="badge badge-danger fs-base">
-                        O: <%= element.o if !element.nil? %>
-                      </span>
-                      <span class="badge badge-primary fs-base">
-                        N: <%= element.n if !element.nil? %>
-                      </span>
-                      <span class="badge badge-warning fs-base">
-                        S: <%= element.s if !element.nil? %>
-                      </span>
-                      <span class="badge badge-success fs-base">
-                        Cl: <%= element.cl if !element.nil? %>
-                      </span>
-                  <!--end::Subtitle-->
+                  <span class="badge badge-outline badge-primary fs-base">
+                    수분 <%= element.w if !element.nil? %>
                   </span>
+                  <span class="badge badge-outline badge-danger fs-base">
+                    가연분 <%= element.f if !element.nil? %>
+                  </span>
+                  <span class="badge badge-outline badge-success fs-base">
+                    회분 <%= element.a if !element.nil? %>
+                  </span>
+                  <br/>
+                  <span class="badge badge-dark fs-base">
+                    C: <%= element.c if !element.nil? %>
+                  </span>
+                  <span class="badge badge-secondary fs-base">
+                    H: <%= element.h if !element.nil? %>
+                  </span>
+                  <span class="badge badge-danger fs-base">
+                    O: <%= element.o if !element.nil? %>
+                  </span>
+                  <span class="badge badge-primary fs-base">
+                    N: <%= element.n if !element.nil? %>
+                  </span>
+                  <span class="badge badge-warning fs-base">
+                    S: <%= element.s if !element.nil? %>
+                  </span>
+                  <span class="badge badge-success fs-base">
+                    Cl: <%= element.cl if !element.nil? %>
+                  </span>
+                  <!--end::Subtitle-->
+                </span>
               </div>
               <!--end::Title-->
             </div>
             <!--end::Header-->
-            <!--begin::Card body-->
-            <div class="card-body d-flex align-items-end pt-0">
-            </div>
-            <!--end::Card body-->
           </div>
           <!--end::Card widget 20-->
         </div>
@@ -175,7 +171,7 @@
             <!--begin::Card widget 20-->
             <div class="card card-flush h-md-175 mb-0 mb-xl-0">
               <!--begin::Header-->
-              <div class="card-header pt-5">
+              <div class="card-header pt-5 pb-4">
                 <!--begin::Title-->
                 <div class="card-title d-flex flex-column">
                   <!--begin::Amount-->
@@ -234,10 +230,6 @@
                 <!--end::Title-->
               </div>
               <!--end::Header-->
-              <!--begin::Card body-->
-              <div class="card-body d-flex align-items-end pt-0">
-              </div>
-              <!--end::Card body-->
             </div>
             <!--end::Card widget 20-->
           </div>

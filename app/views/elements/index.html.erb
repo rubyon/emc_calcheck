@@ -64,7 +64,7 @@
                 <td><a href="<%= edit_element_path(element) %>"> 수정</a></td>
                 <td><%= link_to "삭제", element_path(element), data: {
                   turbo_method: :delete,
-                  turbo_confirm: "Are you sure?"
+                  turbo_confirm: "정말 삭제 하시겠습니까?"
                 } %></td>
               </tr>
             <% end %>
