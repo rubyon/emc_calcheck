@@ -1,0 +1,2 @@
+class TempElement < ApplicationRecord
+end

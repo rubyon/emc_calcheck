@@ -1,0 +1,78 @@
+<%= render "common/header", page_title: "임시 성분 입력", page_sub_title: "목록 보기", icon: "test-tubes", color: "info" %>
+<%= form_tag('/temp_elements/checked') do %>
+  <div class="card card-xl-stretch mb-5 mb-xl-5">
+    <!--begin::Body-->
+    <div class="card-body pt-5">
+      <!--begin::Item-->
+      <div class="d-flex align-items-center mb-7">
+        <table class="table table-row-bordered gy-5">
+          <thead>
+          <tr class="fw-semibold fs-8 text-muted">
+            <th>제목</th>
+            <th>W</th>
+            <th>F</th>
+            <th>A</th>
+            <th>C</th>
+            <th>H</th>
+            <th>O</th>
+            <th>N</th>
+            <th>S</th>
+            <th>Cl</th>
+            <th>Date</th>
+            <th>수정</th>
+            <th>삭제</th>
+            <th>사용</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @temp_elements.each do |element| %>
+            <tr class="fw-semibold fs-8">
+              <td><%= element.title %></td>
+              <td><%= element.w %></td>
+              <td><%= element.f %></td>
+              <td><%= element.a %></td>
+              <td><%= element.c %></td>
+              <td><%= element.h %></td>
+              <td><%= element.o %></td>
+              <td><%= element.n %></td>
+              <td><%= element.s %></td>
+              <td><%= element.cl %></td>
+              <td><%= element.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+              <td><a href="<%= edit_temp_element_path(element) %>">수정</a></td>
+              <td><%= link_to "Destroy", temp_element_path(element), data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %></td>
+              <td><%= check_box_tag "use[#{element.id}]", 'true', element.use, class: 'element-checkbox' %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div style="text-align: right;">
+        <%= submit_tag '사용하기', class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<div style="text-align: right;">
+  <%= link_to '새 임시 성분 입력', new_temp_element_path, class: "btn btn-warning" %>
+</div>
+<%= render "common/footer" %>
+<script>
+    document.addEventListener("turbo:load", function () {
+        // Turbo 프레임워크의 turbo:load 이벤트를 사용하여 JavaScript를 실행
+        const checkboxes = document.querySelectorAll('.element-checkbox');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('click', function (event) {
+                if (event.target.checked) {
+                    checkboxes.forEach(function (otherCheckbox) {
+                        if (otherCheckbox !== event.target) {
+                            otherCheckbox.checked = false;
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>

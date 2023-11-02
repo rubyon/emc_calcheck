@@ -1,0 +1,2 @@
+class CalMark < ApplicationRecord
+end

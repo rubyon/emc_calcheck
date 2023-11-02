@@ -1,0 +1,45 @@
+<%= render "common/header", page_title: "발열량 계산식", page_sub_title: "목록 보기", icon: "finance-calculator", color: "success" %>
+<div class="card card-xl-stretch mb-xl-8">
+  <!--begin::Body-->
+  <div class="card-body pt-5">
+    <!--begin::Item-->
+    예)
+    w(수분)
+    f(가연분)
+    a(회분)
+    c(탄소)
+    h(수소)
+    o(산소)
+    n(질소)
+    s(황)
+    cl(염소)<br>
+    고위 발열량 EX> (8100*c/100)+(34000*((h/100)-((n/100)/8)))+(2500*(s/100))<br>
+    저위 발열량 EX> ((8100*c/100)+(34000*((h/100)-((n/100)/8)))+(2500*(s/100)))-600*((9*(h/100))+(w/100))
+    <div class="d-flex align-items-center mb-7">
+      <table class="table table-row-bordered gy-5">
+        <thead>
+        <tr class="fw-semibold fs-6 text-muted">
+          <th>고위 발열량 계산식</th>
+          <th>저위 발열량 계산식</th>
+          <th>생성일</th>
+          <th>수정</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @formulas.each do |formula| %>
+          <tr>
+            <td><%= formula.hhv_formula %></td>
+            <td><%= formula.lhv_formula %></td>
+            <td><%= formula.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            <td><a href="<%= edit_formula_path(formula) %>">수정</a></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div style="text-align: right;">
+      <%= link_to "계산식 입력", new_formula_path, class: "btn btn-primary" if @formulas.blank? %>
+    </div>
+  </div>
+</div>
+<%= render "common/footer" %>

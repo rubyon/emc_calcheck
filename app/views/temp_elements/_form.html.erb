@@ -1,0 +1,106 @@
+<%= form_with model: temp_element do |form| %>
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="title">제목</span>
+    <%= form.text_field :title, class: "form-control" %>
+    <% temp_element.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="w">수분(W)</span>
+    <%= form.text_field :w, class: "form-control" %>
+    <% temp_element.errors.full_messages_for(:w).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="f">가연분(F)</span>
+    <%= form.text_field :f, class: "form-control" %>
+    <% temp_element.errors.full_messages_for(:f).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="a">회분(A)</span>
+    <%= form.text_field :a, class: "form-control" %>
+    <% temp_element.errors.full_messages_for(:a).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="a">C (탄소)</span>
+    <%= form.text_field :c, class: "form-control" %>
+    <% temp_element.errors.full_messages_for(:c).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="a">H (수소)</span>
+    <%= form.text_field :h, class: "form-control" %>
+    <% temp_element.errors.full_messages_for(:h).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="a">O (산소)</span>
+    <%= form.text_field :o, class: "form-control" %>
+    <% temp_element.errors.full_messages_for(:o).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="a">N (질소)</span>
+    <%= form.text_field :n, class: "form-control" %>
+    <% temp_element.errors.full_messages_for(:n).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="a">S (황)</span>
+    <%= form.text_field :s, class: "form-control" %>
+    <% temp_element.errors.full_messages_for(:s).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="a">Cl (염소)</span>
+    <%= form.text_field :cl, class: "form-control" %>
+    <% temp_element.errors.full_messages_for(:cl).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <div style="text-align: right;">
+    <%= form.submit "저장하기", class: "btn btn-primary" %>
+  </div>
+<% end %>

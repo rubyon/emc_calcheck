@@ -1,0 +1,64 @@
+<%= render "common/header", page_title: "발열량 범위", page_sub_title: "목록 보기", icon: "star", color: "danger" %>
+<%= form_tag('/cal_marks/checked') do %>
+  <div class="card card-xl-stretch mb-xl-8">
+    <!--begin::Body-->
+    <div class="card-body pt-5">
+      <!--begin::Item-->
+      <div class="d-flex align-items-center mb-7">
+        <table class="table table-row-bordered gy-5">
+          <thead>
+          <tr class="fw-semibold fs-6 text-muted">
+            <th>제목</th>
+            <th>저위 (0 ~ 저위)</th>
+            <th>중위 (저위 ~ 중위)</th>
+            <th>생성일</th>
+            <th>수정</th>
+            <th>삭제</th>
+            <th>사용</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @cal_marks.each do |mark| %>
+            <tr>
+              <td><%= mark.title %></td>
+              <td><%= mark.low %></td>
+              <td><%= mark.middle %></td>
+              <td><%= mark.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+              <td><a href="<%= edit_cal_mark_path(mark) %>">수정</a></td>
+              <td><%= link_to "Destroy", cal_mark_path(mark), data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %></td>
+              <td><%= check_box_tag "use[#{mark.id}]", 'true', mark.use, class: 'mark-checkbox' %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div style="text-align: right;">
+        <%= submit_tag '사용하기', class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<div style="text-align: right;">
+  <%= link_to '새 발열량 범위 입력', new_cal_mark_path, class: "btn btn-warning" %>
+</div>
+<%= render "common/footer" %>
+<script>
+    document.addEventListener("turbo:load", function () {
+        // Turbo 프레임워크의 turbo:load 이벤트를 사용하여 JavaScript를 실행
+        const checkboxes = document.querySelectorAll('.mark-checkbox');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('click', function (event) {
+                if (event.target.checked) {
+                    checkboxes.forEach(function (otherCheckbox) {
+                        if (otherCheckbox !== event.target) {
+                            otherCheckbox.checked = false;
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>

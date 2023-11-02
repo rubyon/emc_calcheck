@@ -1,0 +1,37 @@
+w(수분)
+f(가연분)
+a(회분)
+c(탄소)
+h(수소)
+o(산소)
+n(질소)
+s(황)
+cl(염소)
+<br>
+*원소기호는 전부 소문자로 표기해주세요
+<p></p>
+<%= form_with model: formula do |form| %>
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="w">고위 발열량 계산식</span>
+    <%= form.text_field :hhv_formula, class: "form-control" %>
+    <% formula.errors.full_messages_for(:hhv_formula).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="w">저위 발열량 계산식</span>
+    <%= form.text_field :lhv_formula, class: "form-control" %>
+    <% formula.errors.full_messages_for(:lhv_formula).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <div style="text-align: right;">
+    <%= form.submit "저장하기", class: "btn btn-primary" %>
+  </div>
+<% end %>

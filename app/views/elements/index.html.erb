@@ -1,0 +1,82 @@
+<%= render "common/header", page_title: "성분 입력", page_sub_title: @category_title, icon: "flask", color: "warning" %>
+<% @categories.each do |category| %>
+  <% if params[:category].blank? %>
+    <a href="#" class="btn btn-<%= category.name.include?("고상") ? "success" : "primary" %> px-4 py-2"><%= category.name %></a>
+    <p></p>
+  <% end %>
+  <% @elements = Element.where(category_id: category.id) %>
+  <% @season = ["spring", "summer", "autumn", "winter"] %>
+  <% @season.each do |season| %>
+    <% @elements_season = Element.where(category_id: category.id).where(season: season).order(id: :desc) %>
+    <!--begin::List Widget 1-->
+    <div class="card card-xl-stretch mb-5 mb-xl-5">
+      <!--begin::Header-->
+      <a href="#" class="btn btn-flex px-6">
+        <i class="ki-duotone ki-cube-2 fs-3x text-<%= season_color(season) %>"><span class="path1"></span><span class="path2"></span></span><span class="path3"></span></i>
+        <span class="d-flex flex-column align-items-start ms-2">
+        <span class="fs-3 fw-bold"><%= translate_season(season) %></span>
+        <span class="fs-7"><%= category.name %></span>
+        </span>
+      </a>
+      <!--end::Header-->
+      <!--begin::Body-->
+      <div class="card-body pt-5">
+        <!--begin::Item-->
+        <div class="d-flex align-items-center mb-7">
+          <table class="table table-row-bordered gy-5">
+            <thead>
+            <tr class="fw-semibold fs-8 text-muted">
+              <th>성상</th>
+              <th>W</th>
+              <th>F</th>
+              <th>A</th>
+              <th>C</th>
+              <th>H</th>
+              <th>O</th>
+              <th>N</th>
+              <th>S</th>
+              <th>Cl</th>
+              <th>계절</th>
+              <th>Hi</th>
+              <th>Low</th>
+              <th>Date</th>
+              <th>수정</th>
+              <th>삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @elements_season.each do |element| %>
+              <tr class="fw-semibold fs-8">
+                <td><%= element.category.name %></td>
+                <td><%= element.w %></td>
+                <td><%= element.f %></td>
+                <td><%= element.a %></td>
+                <td><%= element.c %></td>
+                <td><%= element.h %></td>
+                <td><%= element.o %></td>
+                <td><%= element.n %></td>
+                <td><%= element.s %></td>
+                <td><%= element.cl %></td>
+                <td><%= translate_season(element.season) %></td>
+                <td><%= element.hhv_temp %></td>
+                <td><%= element.lhv_temp %></td>
+                <td><%= element.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+                <td><a href="<%= edit_element_path(element) %>"> 수정</a></td>
+                <td><%= link_to "삭제", element_path(element), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div style="text-align: right;"><%= link_to "추가하기", new_element_path(category: category.code, season: season), class: "btn btn-#{season_color(season)}" %></div>
+        <!--end::Item-->
+      </div>
+      <!--end::Body-->
+    </div>
+    <!--end::List Widget 1-->
+  <% end %>
+<% end %>
+<%= render "common/footer" %>

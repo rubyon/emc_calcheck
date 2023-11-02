@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  water: 1.5
+  flammable: 1.5
+  ash: 1.5
+  c: 1.5
+  h: 1.5
+  o: 1.5
+  'n': 1.5
+  s: 1.5
+  cl: 1.5
+  season: MyString
+  hhv_temp: 1.5
+  lhv_temp: 1.5
+
+two:
+  water: 1.5
+  flammable: 1.5
+  ash: 1.5
+  c: 1.5
+  h: 1.5
+  o: 1.5
+  'n': 1.5
+  s: 1.5
+  cl: 1.5
+  season: MyString
+  hhv_temp: 1.5
+  lhv_temp: 1.5

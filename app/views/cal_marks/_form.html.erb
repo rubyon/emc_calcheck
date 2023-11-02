@@ -1,0 +1,35 @@
+<%= form_with model: cal_mark do |form| %>
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="w">제목</span>
+    <%= form.text_field :title, class: "form-control" %>
+    <% cal_mark.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="w">고위</span>
+    <%= form.text_field :low, class: "form-control" %>
+    <% cal_mark.errors.full_messages_for(:low).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <!--begin::Input group-->
+  <div class="input-group mb-5">
+    <span class="input-group-text" style="width:150px;" id="w">중위</span>
+    <%= form.text_field :middle, class: "form-control" %>
+    <% cal_mark.errors.full_messages_for(:middle).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <!--end::Input group-->
+
+  <div style="text-align: right;">
+    <%= form.submit "저장하기", class: "btn btn-primary" %>
+  </div>
+<% end %>
