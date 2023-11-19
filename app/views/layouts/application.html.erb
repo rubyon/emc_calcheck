@@ -3,7 +3,7 @@
 <!--begin::Head-->
 <head>
   <base href=""/>
-  <title>EmcCalcheck</title>
+  <title>환경시설관리주식회사 발열량 예측 시스템</title>
   <meta charset="utf-8"/>
   <meta name="description" content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now and get life-time updates for free."/>
   <meta name="keywords" content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon"/>
@@ -69,6 +69,14 @@ if (document.documentElement) {
             <i class="ki-duotone ki-abstract-14 fs-2 fs-md-1">
               <span class="path1"></span>
               <span class="path2"></span>
+              <span class="path3"></span>
+              <span class="path4"></span>
+              <span class="path5"></span>
+              <span class="path6"></span>
+              <span class="path7"></span>
+              <span class="path8"></span>
+              <span class="path9"></span>
+              <span class="path10"></span>
             </i>
           </div>
         </div>
@@ -84,14 +92,32 @@ if (document.documentElement) {
         <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
           <!--begin::Menu wrapper-->
           <div class="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true" data-kt-swapper-mode="{default: 'append', lg: 'prepend'}" data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
+            <!--begin::Menu-->
+            <div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
+              <!--begin:Menu item-->
+              <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                <!--begin:Menu link-->
+                <span class="menu-link">
+                  <span class="menu-title fs-2x">환경시설관리주식회사 발열량 예측 시스템</span>
+                </span>
+              </div>
+            </div>
           </div>
           <!--end::Menu wrapper-->
           <!--begin::Navbar-->
           <div class="app-navbar flex-shrink-0">
             <div class="app-navbar-item ms-1 ms-md-4">
               <i class="ki-duotone ki-exit-right text-danger fs-2x">
-                <i class="path1"></i>
-                <i class="path2"></i>
+                <span class="path1"></span>
+                <span class="path2"></span>
+                <span class="path3"></span>
+                <span class="path4"></span>
+                <span class="path5"></span>
+                <span class="path6"></span>
+                <span class="path7"></span>
+                <span class="path8"></span>
+                <span class="path9"></span>
+                <span class="path10"></span>
               </i>
               <%= link_to "로그아웃", destroy_user_session_path, class: "menu-link px-5" %>
             </div>
@@ -126,34 +152,143 @@ if (document.documentElement) {
               <!--begin::Menu-->
               <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold fs-6" id="#kt_app_sidebar_menu">
                 <!--begin:Menu item-->
-                <div class="menu-item here show menu-accordion">
+                <div class="menu-item">
                   <!--begin:Menu link-->
-                  <span class="menu-link">
+                  <a class="menu-link" href="/cctv">
 												<span class="menu-icon">
-													<i class="ki-duotone ki-flask fs-2 text-warning">
+													<i class="ki-duotone ki-screen fs-2 text-white">
 														<span class="path1"></span>
 														<span class="path2"></span>
 														<span class="path3"></span>
-														<span class="path4"></span>
+                            <span class="path4"></span>
+                            <span class="path5"></span>
+                            <span class="path6"></span>
+                            <span class="path7"></span>
+                            <span class="path8"></span>
+                            <span class="path9"></span>
+                            <span class="path10"></span>
+													</i>
+												</span>
+                    <span class="menu-title">CCTV 보기</span>
+                  </a>
+                  <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                  <!--begin:Menu link-->
+                  <a class="menu-link" href="/boxes">
+												<span class="menu-icon">
+													<i class="ki-duotone ki-cube-2 fs-2 text-info">
+														<span class="path1"></span>
+														<span class="path2"></span>
+														<span class="path3"></span>
+                            <span class="path4"></span>
+                            <span class="path5"></span>
+                            <span class="path6"></span>
+                            <span class="path7"></span>
+                            <span class="path8"></span>
+                            <span class="path9"></span>
+                            <span class="path10"></span>
+													</i>
+												</span>
+                    <span class="menu-title">폐기물 목록</span>
+                  </a>
+                  <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                  <!--begin:Menu link-->
+                  <a class="menu-link" href="/formulas">
+												<span class="menu-icon">
+													<i class="ki-duotone ki-finance-calculator fs-2 text-success">
+														<span class="path1"></span>
+														<span class="path2"></span>
+														<span class="path3"></span>
+                            <span class="path4"></span>
+                            <span class="path5"></span>
+                            <span class="path6"></span>
+                            <span class="path7"></span>
+                            <span class="path8"></span>
+                            <span class="path9"></span>
+                            <span class="path10"></span>
+													</i>
+												</span>
+                    <span class="menu-title">발열량 계산식</span>
+                  </a>
+                  <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                  <!--begin:Menu link-->
+                  <a class="menu-link" href="/cal_marks">
+												<span class="menu-icon">
+													<i class="ki-duotone ki-star fs-2 text-danger">
+														<span class="path1"></span>
+														<span class="path2"></span>
+														<span class="path3"></span>
+                            <span class="path4"></span>
+                            <span class="path5"></span>
+                            <span class="path6"></span>
+                            <span class="path7"></span>
+                            <span class="path8"></span>
+                            <span class="path9"></span>
+                            <span class="path10"></span>
+													</i>
+												</span>
+                    <span class="menu-title">발열량 범위</span>
+                  </a>
+                  <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                  <!--begin:Menu link-->
+                  <a class="menu-link" href="/temp_elements">
+												<span class="menu-icon">
+													<i class="ki-duotone ki-test-tubes fs-2 text-warning">
+														<span class="path1"></span>
+														<span class="path2"></span>
+														<span class="path3"></span>
+                            <span class="path4"></span>
+                            <span class="path5"></span>
+                            <span class="path6"></span>
+                            <span class="path7"></span>
+                            <span class="path8"></span>
+                            <span class="path9"></span>
+                            <span class="path10"></span>
+													</i>
+												</span>
+                    <span class="menu-title">임시 성분 입력</span>
+                  </a>
+                  <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item here show menu-accordion">
+                  <!--begin:Menu link-->
+                  <a class="menu-link" href="/elements">
+												<span class="menu-icon">
+													<i class="ki-duotone ki-flask fs-2 text-primary">
+														<span class="path1"></span>
+														<span class="path2"></span>
+														<span class="path3"></span>
+                            <span class="path4"></span>
+                            <span class="path5"></span>
+                            <span class="path6"></span>
+                            <span class="path7"></span>
+                            <span class="path8"></span>
+                            <span class="path9"></span>
+                            <span class="path10"></span>
 													</i>
 												</span>
 												<span class="menu-title">성분 입력</span>
-											</span>
+                  </a>
                   <!--end:Menu link-->
                   <!--begin:Menu sub-->
                   <div class="menu-sub menu-sub-accordion">
-                    <!--begin:Menu item-->
-                    <div class="menu-item">
-                      <!--begin:Menu link-->
-                      <a class="menu-link <%= "active" if params[:category].blank? and controller_name == "elements" %>" href="/elements">
-														<span class="menu-bullet">
-															<span class="bullet bullet-dot"></span>
-														</span>
-                        <span class="menu-title">전체 보기</span>
-                      </a>
-                      <!--end:Menu link-->
-                    </div>
-                    <!--end:Menu item-->
                     <% @categories_all.each do |category| %>
                       <!--begin:Menu item-->
                       <div class="menu-item">
@@ -170,51 +305,6 @@ if (document.documentElement) {
                     <% end %>
                   </div>
                   <!--end:Menu sub-->
-                </div>
-                <!--end:Menu item-->
-                <!--begin:Menu item-->
-                <div class="menu-item">
-                  <!--begin:Menu link-->
-                  <a class="menu-link" href="/temp_elements">
-												<span class="menu-icon">
-													<i class="ki-duotone ki-test-tubes fs-2 text-info">
-														<span class="path1"></span>
-														<span class="path2"></span>
-													</i>
-												</span>
-                    <span class="menu-title">임시 성분 입력</span>
-                  </a>
-                  <!--end:Menu link-->
-                </div>
-                <!--end:Menu item-->
-                <!--begin:Menu item-->
-                <div class="menu-item">
-                  <!--begin:Menu link-->
-                  <a class="menu-link" href="/formulas">
-												<span class="menu-icon">
-													<i class="ki-duotone ki-finance-calculator fs-2 text-success">
-														<span class="path1"></span>
-														<span class="path2"></span>
-													</i>
-												</span>
-                    <span class="menu-title">발열량 계산식</span>
-                  </a>
-                  <!--end:Menu link-->
-                </div>
-                <!--end:Menu item-->
-                <!--begin:Menu item-->
-                <div class="menu-item">
-                  <!--begin:Menu link-->
-                  <a class="menu-link" href="/cal_marks">
-												<span class="menu-icon">
-													<i class="ki-duotone ki-star fs-2 text-danger">
-														<span class="path1"></span>
-														<span class="path2"></span>
-													</i>
-												</span>
-                    <span class="menu-title">발열량 범위</span>
-                  </a>
-                  <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
               </div>
@@ -234,7 +324,18 @@ if (document.documentElement) {
         <% if flash[:notice] %>
           <div class="alert alert-primary d-flex align-items-center p-5 mx-10">
             <!--begin::Icon-->
-            <i class="ki-duotone ki-shield-tick fs-2hx text-primary me-4"><span class="path1"></span><span class="path2"></span></i>
+            <i class="ki-duotone ki-shield-tick fs-2hx text-primary me-4">
+              <span class="path1"></span>
+              <span class="path2"></span>
+              <span class="path3"></span>
+              <span class="path4"></span>
+              <span class="path5"></span>
+              <span class="path6"></span>
+              <span class="path7"></span>
+              <span class="path8"></span>
+              <span class="path9"></span>
+              <span class="path10"></span>
+            </i>
             <!--end::Icon-->
             <!--begin::Wrapper-->
             <div class="d-flex flex-column">
@@ -279,6 +380,14 @@ if (document.documentElement) {
   <i class="ki-duotone ki-arrow-up">
     <span class="path1"></span>
     <span class="path2"></span>
+    <span class="path3"></span>
+    <span class="path4"></span>
+    <span class="path5"></span>
+    <span class="path6"></span>
+    <span class="path7"></span>
+    <span class="path8"></span>
+    <span class="path9"></span>
+    <span class="path10"></span>
   </i>
 </div>
 <!--end::Scrolltop-->

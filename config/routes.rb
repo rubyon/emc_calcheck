@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :formulas
   resources :temp_elements
   resources :cal_marks
+  resources :boxes
+
+  get "/cctv", to: "home#cctv"
 
   post "/api/calcheck", to: "api#calcheck"
 

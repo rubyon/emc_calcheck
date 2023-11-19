@@ -38,6 +38,12 @@ class FormulasController < ApplicationController
     modified_params = params.require(:formula).permit!
     # 모든 파라미터 키를 소문자로 변경
     modified_params.transform_values!(&:downcase)
+
+    # 각 값을 chomp
+    modified_params.each do |key, value|
+      modified_params[key] = value.gsub(/[^A-Za-z0-9+*\-\/\(\)]/, '')
+    end
+
     modified_params
   end
 

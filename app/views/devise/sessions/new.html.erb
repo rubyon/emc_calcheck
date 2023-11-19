@@ -60,7 +60,7 @@
         </div>
         <!--end::Submit button-->
         <!--begin::Sign up-->
-        <%- if devise_mapping.registerable? && controller_name != 'registrations' #and User.all.blank? %>
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' and User.all.blank? %>
           <div class="text-gray-500 text-center fw-semibold fs-6">아직 관리자 등록이 되있어지 않습니다.
             <%= link_to "관리자 등록", new_registration_path(resource_name), class: "link-primary" %><br />
           </div>

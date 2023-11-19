@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_31_022049) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_03_061325) do
+  create_table "boxes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "epc"
+    t.string "kkr"
+    t.bigint "category_id", null: false
+    t.datetime "deadline"
+    t.float "weight"
+    t.float "hhv"
+    t.float "lhv"
+    t.float "box_cal_hi"
+    t.float "box_cal_low"
+    t.integer "marks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_boxes_on_category_id"
+  end
+
   create_table "cal_marks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.integer "low"
@@ -81,5 +97,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_022049) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "boxes", "categories"
   add_foreign_key "elements", "categories"
 end

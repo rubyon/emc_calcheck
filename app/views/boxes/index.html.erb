@@ -1,0 +1,45 @@
+<%= render "common/header", page_title: "폐기물 목록", page_sub_title: "폐기물 목록", icon: "cube-2", color: "info" %>
+<div class="card card-xl-stretch mb-xl-8">
+  <!--begin::Body-->
+  <div class="card-body pt-5">
+    <!--begin::Item-->
+    <div class="d-flex align-items-center mb-7">
+      <table class="table table-row-bordered gy-5">
+        <thead>
+        <tr class="fw-semibold fs-6 text-muted">
+          <th>EPC</th>
+          <th>KKR</th>
+          <th>성상</th>
+          <th>처리기한</th>
+          <th>무게</th>
+          <th>고위 발열량/kg</th>
+          <th>저위 발열량/kg</th>
+          <th>고위 박스 발열량</th>
+          <th>저위 박스 발열량</th>
+          <th>불꽃</th>
+          <th>생성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @boxes.each do |box| %>
+          <tr>
+            <td><%= box.epc %></td>
+            <td><%= box.kkr %></td>
+            <td><%= box.category.name %></td>
+            <td><%= box.deadline %></td>
+            <td><%= box.weight %></td>
+            <td><%= box.hhv %></td>
+            <td><%= box.lhv %></td>
+            <td><%= box.box_cal_hi %></td>
+            <td><%= box.box_cal_low %></td>
+            <td><%= box.marks %></td>
+            <td><%= box.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+  </div>
+</div>
+<%= render "common/footer" %>

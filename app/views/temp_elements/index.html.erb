@@ -1,4 +1,4 @@
-<%= render "common/header", page_title: "임시 성분 입력", page_sub_title: "목록 보기", icon: "test-tubes", color: "info" %>
+<%= render "common/header", page_title: "임시 성분 입력", page_sub_title: "목록 보기", icon: "test-tubes", color: "warning" %>
 <%= form_tag('/temp_elements/checked') do %>
   <div class="card card-xl-stretch mb-5 mb-xl-5">
     <!--begin::Body-->
@@ -38,11 +38,38 @@
               <td><%= element.s %></td>
               <td><%= element.cl %></td>
               <td><%= element.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
-              <td><a href="<%= edit_temp_element_path(element) %>">수정</a></td>
-              <td><%= link_to "삭제", temp_element_path(element), data: {
-                turbo_method: :delete,
-                turbo_confirm: "정말 삭제 하시겠습니까?"
-              } %></td>
+              <td>
+                <a href="<%= edit_temp_element_path(element) %>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                  <i class="ki-duotone ki-pencil fs-2">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                    <span class="path3"></span>
+                    <span class="path4"></span>
+                    <span class="path5"></span>
+                    <span class="path6"></span>
+                    <span class="path7"></span>
+                    <span class="path8"></span>
+                    <span class="path9"></span>
+                    <span class="path10"></span>
+                  </i>
+                </a>
+              </td>
+              <td>
+                <%= link_to temp_element_path(element), data: { turbo_method: :delete, turbo_confirm: "정말 삭제 하시겠습니까?" }, class: "btn btn-icon btn-bg-light btn-active-color-primary btn-sm" do %>
+                  <i class="ki-duotone ki-trash fs-2">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                    <span class="path3"></span>
+                    <span class="path4"></span>
+                    <span class="path5"></span>
+                    <span class="path6"></span>
+                    <span class="path7"></span>
+                    <span class="path8"></span>
+                    <span class="path9"></span>
+                    <span class="path10"></span>
+                  </i>
+                <% end %>
+              </td>
               <td><%= check_box_tag "use[#{element.id}]", 'true', element.use, class: 'element-checkbox' %></td>
             </tr>
           <% end %>

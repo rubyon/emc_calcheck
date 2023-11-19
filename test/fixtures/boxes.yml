@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  epc: MyString
+  kkr: MyString
+  category: one
+  deadline: 2023-11-03 15:13:25
+  weight: 1.5
+  hhv: 1.5
+  lhv: 1.5
+  box_cal: 1.5
+
+two:
+  epc: MyString
+  kkr: MyString
+  category: two
+  deadline: 2023-11-03 15:13:25
+  weight: 1.5
+  hhv: 1.5
+  lhv: 1.5
+  box_cal: 1.5

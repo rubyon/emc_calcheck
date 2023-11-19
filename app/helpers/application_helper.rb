@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  include Pagy::Frontend
+
   def get_season
     month = Time.now.month
     case month

@@ -69,3 +69,4 @@ end
 
 gem "mysql2"
 gem "devise", "~> 4.9"
+gem "pagy"

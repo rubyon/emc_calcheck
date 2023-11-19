@@ -1,4 +1,4 @@
-<%= render "common/header", page_title: "성분 입력", page_sub_title: @category_title, icon: "flask", color: "warning" %>
+<%= render "common/header", page_title: @category_title, page_sub_title: "성분 입력", icon: "flask", color: "primary" %>
 <% @categories.each do |category| %>
   <% if params[:category].blank? %>
     <a href="#" class="btn btn-<%= category.name.include?("고상") ? "success" : "primary" %> px-4 py-2"><%= category.name %></a>
@@ -9,10 +9,21 @@
   <% @season.each do |season| %>
     <% @elements_season = Element.where(category_id: category.id).where(season: season).order(id: :desc) %>
     <!--begin::List Widget 1-->
-    <div class="card card-xl-stretch mb-5 mb-xl-5">
+    <div class="card card-xl-stretch mb-5 mb-xl-5" <%= raw("style=\"background-color: #f1f1f1\"") if season == get_season %>>
       <!--begin::Header-->
       <a href="#" class="btn btn-flex px-6">
-        <i class="ki-duotone ki-cube-2 fs-3x text-<%= season_color(season) %>"><span class="path1"></span><span class="path2"></span></span><span class="path3"></span></i>
+        <i class="ki-duotone ki-cube-2 fs-3x text-<%= season_color(season) %>">
+          <span class="path1"></span>
+          <span class="path2"></span>
+          <span class="path3"></span>
+          <span class="path4"></span>
+          <span class="path5"></span>
+          <span class="path6"></span>
+          <span class="path7"></span>
+          <span class="path8"></span>
+          <span class="path9"></span>
+          <span class="path10"></span>
+        </i>
         <span class="d-flex flex-column align-items-start ms-2">
         <span class="fs-3 fw-bold"><%= translate_season(season) %></span>
         <span class="fs-7"><%= category.name %></span>
@@ -61,11 +72,38 @@
                 <td><%= element.hhv_temp %></td>
                 <td><%= element.lhv_temp %></td>
                 <td><%= element.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
-                <td><a href="<%= edit_element_path(element) %>"> 수정</a></td>
-                <td><%= link_to "삭제", element_path(element), data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "정말 삭제 하시겠습니까?"
-                } %></td>
+                <td>
+                  <a href="<%= edit_element_path(element) %>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                    <i class="ki-duotone ki-pencil fs-2">
+                      <span class="path1"></span>
+                      <span class="path2"></span>
+                      <span class="path3"></span>
+                      <span class="path4"></span>
+                      <span class="path5"></span>
+                      <span class="path6"></span>
+                      <span class="path7"></span>
+                      <span class="path8"></span>
+                      <span class="path9"></span>
+                      <span class="path10"></span>
+                    </i>
+                  </a>
+                </td>
+                <td>
+                  <%= link_to element_path(element), data: { turbo_method: :delete, turbo_confirm: "정말 삭제 하시겠습니까?" }, class: "btn btn-icon btn-bg-light btn-active-color-primary btn-sm" do %>
+                    <i class="ki-duotone ki-trash fs-2">
+                      <span class="path1"></span>
+                      <span class="path2"></span>
+                      <span class="path3"></span>
+                      <span class="path4"></span>
+                      <span class="path5"></span>
+                      <span class="path6"></span>
+                      <span class="path7"></span>
+                      <span class="path8"></span>
+                      <span class="path9"></span>
+                      <span class="path10"></span>
+                    </i>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
             </tbody>

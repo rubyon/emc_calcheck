@@ -43,6 +43,7 @@ class CalMarksController < ApplicationController
   def checked
     use_params = params[:use]
     CalMark.update_all(use: false)
+    flash[:notice] = "선택이 취소 되었습니다."
     if use_params
       use_params.each do |id, value|
         if value == 'true'

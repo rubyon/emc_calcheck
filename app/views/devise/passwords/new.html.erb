@@ -1,16 +1,52 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<!--begin::Body-->
+<div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end p-12 p-lg-20">
+  <!--begin::Card-->
+  <div class="bg-body d-flex flex-column align-items-stretch flex-center rounded-4 w-md-600px p-20">
+    <!--begin::Wrapper-->
+    <div class="d-flex flex-center flex-column flex-column-fluid px-lg-10 pb-15 pb-lg-20">
+      <!--begin::Form-->
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <!--begin::Heading-->
+        <div class="text-center mb-11">
+          <!--begin::Title-->
+          <h1 class="text-dark fw-bolder mb-3">비밀번호 찾기</h1>
+          <!--end::Title-->
+          <!--begin::Subtitle-->
+          <%- flash.each do |name, msg| -%>
+            <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+          <%- end -%>
+          <!--end::Subtitle=-->
+        </div>
+        <!--begin::Heading-->
+        <div class="row g-3 mb-9">
+          <!--begin::Input group=-->
+          <div class="fv-row mb-8">
+            <!--begin::Email-->
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control bg-transparent" %>
+            <!--end::Email-->
+          </div>
+        </div>
+        <!--begin::Submit button-->
+        <div class="d-grid mb-10">
+          <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+            <!--begin::Indicator label-->
+            <span class="indicator-label">이메일로 비밀번호 변경 링크 보내기</span>
+            <!--end::Indicator label-->
+          </button>
+        </div>
+        <div class="text-gray-500 text-center fw-semibold fs-6">
+          <%= link_to "로그인 하기", new_user_session_path, class: "link-primary" %><br />
+        </div>
+        <!--end::Submit button-->
+      <% end %>
+      <!--end::Form-->
+    </div>
+    <!--end::Wrapper-->
+    <!--begin::Footer-->
+    <div class="d-flex flex-stack px-lg-10">
+    </div>
+    <!--end::Footer-->
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <!--end::Card-->
+</div>
+<!--end::Body-->
