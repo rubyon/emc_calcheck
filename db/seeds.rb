@@ -46,3 +46,19 @@ elements_data = [
 elements_data.each do |data|
   Element.create(data)
 end
+
+cal_marks_data = [
+  { low: 20000, middle: 40000 }
+]
+
+cal_marks_data.each do |data|
+  CalMark.create(data)
+end
+
+fomulas_data = [
+  { hhv_formula: "(8100*c/100)+(34000*((h/100)-((n/100)/8)))+(2500*(s/100))", lhv_formula: "((8100*c/100)+(34000*((h/100)-((n/100)/8)))+(2500*(s/100)))-600*((9*(h/100))+(w/100))" }
+]
+
+fomulas_data.each do |data|
+  Formula.create(data)
+end
