@@ -109,7 +109,7 @@
             </tbody>
           </table>
         </div>
-        <div style="text-align: right;"><%= link_to "추가하기", new_element_path(category: category.code, season: season), class: "btn btn-#{season_color(season)}" %></div>
+        <div style="text-align: right;"><%= link_to "추가하기", new_element_path(category: category.id, season: season), class: "btn btn-#{season_color(season)}" %></div>
         <!--end::Item-->
       </div>
       <!--end::Body-->

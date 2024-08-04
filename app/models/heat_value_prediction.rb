@@ -1,0 +1,2 @@
+class HeatValuePrediction < ApplicationRecord
+end

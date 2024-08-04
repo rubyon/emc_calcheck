@@ -3,24 +3,55 @@
   <div id="kt_app_content" class="app-content flex-column-fluid">
     <!--begin::Content container-->
     <div id="kt_app_content_container" class="app-container container-fluid">
-
-      <!--begin::Row-->
-      <div class="row g-3 gx-xl-3 mb-5 mb-xl-5">
-        <!--begin::Overlay-->
-        <div class="overlay">
-          <!--begin::Image-->
-          <img class="w-100 card-rounded" src="/assets/media/auth/emc_bg.png" alt=""/>
-          <!--end::Image-->
-        </div>
-        <!--end::Overlay-->
-      </div>
       <div class="row g-3 gx-xl-3 mb-5 mb-xl-5">
         <!--begin::Col-->
-        <div class="col-md-12 col-lg-12 col-xl-6 col-xxl-6 mb-md-0 mb-xl-0">
-          <%=image_tag "/assets/media/images/facility_1.png", class: "w-100 card-rounded" %>
-        </div>
-        <div class="col-md-12 col-lg-12 col-xl-6 col-xxl-6 mb-md-0 mb-xl-0">
-          <%=image_tag "/assets/media/images/facility_2.png", class: "w-100 card-rounded" %>
+        <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-md-0 mb-xl-0" style="position: relative; display: flex; justify-content: center; align-items: center; height: 100%;">
+          <%= image_tag "/assets/media/images/facility_1.png", class: "w-100 card-rounded" %>
+          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 28%; left: 70%;">
+            <span id="temp_0">0</span>°C<!-- TE102 -->
+          </div>
+          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 42.4%; left: 50.2%;">
+            <span id="temp_1">0</span>°C<!-- TE101 -->
+          </div>
+          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 40.3%; left: 83%;">
+            <span id="temp_2">0</span><!-- FM101 -->
+          </div>
+          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 57.9%; left: 77.4%;">
+            <span id="temp_3">0</span><!-- FM104 -->
+          </div>
+<!--          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 57.9%; left: 82.4%;">-->
+<!--            <span id="temp_4">0</span>--><!-- FM104 TOTAL -->
+<!--          </div>-->
+          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 66.8%; left: 23.6%;">
+            <span id="temp_5">0</span><!-- FM101A -->
+          </div>
+<!--          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 66.8%; left: 22.4%;">-->
+<!--            <span id="temp_6">0</span>--><!-- FM101A TOTAL -->
+<!--          </div>-->
+          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 83.4%; left: 23.6%;">
+            <span id="temp_7">0</span><!-- FM101B -->
+          </div>
+<!--          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 83.4%; left: 22.4%;">-->
+<!--            <span id="temp_8">0</span>--><!-- FM101B TOTAL -->
+<!--          </div>-->
+          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 18.2%; left: 49%;">
+            <span id="temp_9">0</span><!-- FM102A -->
+          </div>
+<!--          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 22.2%; left: 44%;">-->
+<!--            <span id="temp_10">0</span>--><!-- FM102A TOTAL -->
+<!--          </div>-->
+          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 30.8%; left: 49%;">
+            <span id="temp_11">0</span><!-- FM102B -->
+          </div>
+<!--          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 34.8%; left: 44%;">-->
+<!--            <span id="temp_12">0</span>--><!-- FM102B TOTAL -->
+<!--          </div>-->
+          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 40.3%; left: 77.4%;">
+            <span id="temp_13">0</span><!-- FM103 -->
+          </div>
+<!--          <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 40.3%; left: 72.4%;">-->
+<!--            <span id="temp_14">0</span>--><!-- FM103 TOTAL -->
+<!--          </div>-->
         </div>
       </div>
       <!--end::Row-->
@@ -141,32 +172,32 @@
                 <!--begin::Subtitle-->
                 <span class="text-gray-700 pt-1 fw-semibold fs-6 lh-xxl">
                   <span class="badge badge-outline badge-primary fs-base">
-                    수분 <%= @temp_element.w if !@temp_element.nil? %>
+                    수분 <%= @temp_element.w unless @temp_element.nil? %>
                   </span>
                   <span class="badge badge-outline badge-danger fs-base">
-                    가연분 <%= @temp_element.f if !@temp_element.nil? %>
+                    가연분 <%= @temp_element.f unless @temp_element.nil? %>
                   </span>
                   <span class="badge badge-outline badge-success fs-base">
-                    회분 <%= @temp_element.a if !@temp_element.nil? %>
+                    회분 <%= @temp_element.a unless @temp_element.nil? %>
                   </span>
                   <br/>
                   <span class="badge badge-dark fs-base">
-                    C: <%= @temp_element.c if !@temp_element.nil? %>
+                    C: <%= @temp_element.c unless @temp_element.nil? %>
                   </span>
                   <span class="badge badge-secondary fs-base">
-                    H: <%= @temp_element.h if !@temp_element.nil? %>
+                    H: <%= @temp_element.h unless @temp_element.nil? %>
                   </span>
                   <span class="badge badge-danger fs-base">
-                    O: <%= @temp_element.o if !@temp_element.nil? %>
+                    O: <%= @temp_element.o unless @temp_element.nil? %>
                   </span>
                   <span class="badge badge-primary fs-base">
-                    N: <%= @temp_element.n if !@temp_element.nil? %>
+                    N: <%= @temp_element.n unless @temp_element.nil? %>
                   </span>
                   <span class="badge badge-warning fs-base">
-                    S: <%= @temp_element.s if !@temp_element.nil? %>
+                    S: <%= @temp_element.s unless @temp_element.nil? %>
                   </span>
                   <span class="badge badge-success fs-base">
-                    Cl: <%= @temp_element.cl if !@temp_element.nil? %>
+                    Cl: <%= @temp_element.cl unless @temp_element.nil? %>
                   </span>
                   <!--end::Subtitle-->
                 </span>
@@ -221,32 +252,32 @@
                     <!--begin::Subtitle-->
                     <span class="text-gray-700 pt-1 fw-semibold fs-6 lh-xxl">
                       <span class="badge badge-outline badge-primary fs-base">
-                        수분 <%= element.w if !element.nil? %>
+                        수분 <%= element.w unless element.nil? %>
                       </span>
                       <span class="badge badge-outline badge-danger fs-base">
-                        가연분 <%= element.f if !element.nil? %>
+                        가연분 <%= element.f unless element.nil? %>
                       </span>
                       <span class="badge badge-outline badge-success fs-base">
-                        회분 <%= element.a if !element.nil? %>
+                        회분 <%= element.a unless element.nil? %>
                       </span>
                       <br/>
                       <span class="badge badge-dark fs-base">
-                        C: <%= element.c if !element.nil? %>
+                        C: <%= element.c unless element.nil? %>
                       </span>
                       <span class="badge badge-secondary fs-base">
-                        H: <%= element.h if !element.nil? %>
+                        H: <%= element.h unless element.nil? %>
                       </span>
                       <span class="badge badge-danger fs-base">
-                        O: <%= element.o if !element.nil? %>
+                        O: <%= element.o unless element.nil? %>
                       </span>
                       <span class="badge badge-primary fs-base">
-                        N: <%= element.n if !element.nil? %>
+                        N: <%= element.n unless element.nil? %>
                       </span>
                       <span class="badge badge-warning fs-base">
-                        S: <%= element.s if !element.nil? %>
+                        S: <%= element.s unless element.nil? %>
                       </span>
                       <span class="badge badge-success fs-base">
-                        Cl: <%= element.cl if !element.nil? %>
+                        Cl: <%= element.cl unless element.nil? %>
                       </span>
                       <br/>
                       <span class="badge badge-light-danger fs-base">

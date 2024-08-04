@@ -1,0 +1,6 @@
+.overlay-text {
+    font-size: 1.0vw; /* 뷰포트 너비의 1.5%로 폰트 크기 설정 */
+    position: absolute;
+    color: white;
+    font-weight: bold;
+}

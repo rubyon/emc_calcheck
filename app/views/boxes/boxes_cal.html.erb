@@ -1,0 +1,229 @@
+<%= render "common/header", page_title: "폐기물 발열량 계산", page_sub_title: "폐기물 발열량 계산", icon: "cube-2", color: "info" %>
+<div class="mb-xl-8">
+  <%= form_tag({ action: 'boxes_cal' }, { method: 'get', data: { turbo: false } }) do %>
+    <div class="mb-0">
+      <label class="form-label">시간 범위 지정</label>
+      <%= text_field_tag :daterange, params[:daterange], class: 'form-control form-control-solid', placeholder: 'Pick date rage', id: 'kt_daterangepicker_2' %>
+    </div>
+    <script type="text/javascript" src="/js/moment.min.js"></script>
+    <script type="text/javascript" src="/js/daterangepicker.min.js"></script>
+    <script>
+        $(function () {
+            // Extract the daterange parameter from the URL.
+            const urlParams = new URLSearchParams(window.location.search);
+            const dateRangeParam = urlParams.get('daterange');
+
+            let startDate, endDate;
+
+            if (dateRangeParam) {
+                // Split into start and end dates
+                let dateRange = dateRangeParam.split(" - ");
+
+                // Parse the dates
+                startDate = moment(dateRange[0], 'M/D HH:mm');
+                endDate = moment(dateRange[1], 'M/D HH:mm');
+            } else {
+                // Default start and end date
+                startDate = moment().startOf("day");
+                endDate = moment().startOf("hour").add(1, "hour");
+            }
+
+            $('#kt_daterangepicker_2').daterangepicker({
+                timePicker: true,
+                timePicker24Hour: true, // 24시간 형식으로 설정
+                startDate: startDate,
+                endDate: endDate,
+                locale: {format: 'M/D HH:mm'} // 24시간 형식으로 설정
+            }, function (start, end, label) {
+                $('#kt_daterangepicker_2').val(start.format('M/D HH:mm') + ' - ' + end.format('M/D HH:mm'));
+            });
+        });
+    </script>
+    <%= submit_tag '검색', class: 'btn btn-primary' %>
+    <%= link_to 'CSV 로 저장', "/boxes/download?daterange=#{params[:daterange]}", method: :get, data: { turbo: false }, class: 'btn btn-warning' %>
+  <% end %>
+  <!--begin::Body-->
+  <% if params[:daterange] %>
+
+    <div class="row g-3 gx-xl-3 mt-10 mb-5 mb-xl-5">
+      <!--begin::Col-->
+      <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-md-0 mb-xl-0" style="position: relative; display: flex; justify-content: center; align-items: center; height: 100%;">
+        <%= image_tag "/assets/media/images/cal_background.png", class: "w-100 card-rounded" %>
+
+        <%
+          min = (@fm_104_size) #보조연료 투입시간 분
+          hour = (min / 60.0).round(2) #보조연료 투입시간 시간
+          total = ( (@fm_104_average / 60) * hour).round(2) #총 보조연료 투입량
+          total_cal = (total * 8721).round(2) #총 보조연료 투입 열량
+
+          fm_101a_min = (@fm_101a_size)
+          fm_101a_hour = (fm_101a_min / 60.0).round(2)
+          fm_101a_total = (@fm_101a_average  * fm_101a_hour).round(2)
+
+          fm_101b_min = (@fm_101b_size)
+          fm_101b_hour = (fm_101b_min / 60.0).round(2)
+          fm_101b_total = (@fm_101b_average * fm_101b_hour).round(2)
+
+          fm_102a_min = (@fm_102a_size)
+          fm_102a_hour = (fm_102a_min / 60.0).round(2)
+          fm_102a_total = (@fm_102a_average * fm_102a_hour).round(2)
+
+          fm_102b_min = (@fm_102b_size)
+          fm_102b_hour = (fm_102b_min / 60.0).round(2)
+          fm_102b_total = (@fm_102b_average * fm_102b_hour).round(2)
+
+          total_air = (fm_101a_total + fm_101b_total + fm_102a_total + fm_102b_total).round(2)
+          total_air_cal = (total_air * 0.24 * (25 - 15)).round(2)
+
+          fm_103_min = (@fm_103_size)
+          fm_103_hour = (fm_103_min / 60.0).round(2)
+          fm_103_total = (@fm_103_average * ( (273.0 + 900.0) / 273.0 ) * fm_103_hour).round(2)
+          # fm_103_total = (6000 * fm_103_hour).round(2)
+
+          fm_103_total_cal = ((fm_103_total * 0.328) * 900).round(2) #(배출가스 온도여야함)
+
+          expect_cal = @total_box_cal_low.round(1)
+        %>
+
+        <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 18%; right: 65.6%;">
+          <!-- 총 예측 발열량 -->
+          <span><%= number_with_delimiter(expect_cal) %></span>
+        </div>
+        <div class="overlay-text text-white fs-bold " style="scale: 100%; position: absolute; top: 71.5%; right: 53%;">
+          <!-- 총 예측 발열량 B -->
+          <span><%= number_with_delimiter(expect_cal) %></span>
+        </div>
+
+        <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 18%; right: 53.2%;">
+          <!-- 실제 발열량 -->
+          <%
+            total_loss = (@total_box_cal_low * 0.1).round(1)
+            total_have = (@total_box_weight * 0.04 * 0.332 * (500 - 15)).round(1)
+            total_unburned_carbon = (@total_box_weight * 0.04 * 0.08 * 8100).round(1)
+
+            real_total_cal = ((fm_103_total_cal + total_loss + total_have + total_unburned_carbon) - (total_cal + total_air_cal)).round(1)
+          %>
+          <span><%= number_with_delimiter(real_total_cal) %></span>
+        </div>
+        <div class="overlay-text text-white fs-bold " style="scale: 100%; position: absolute; top: 71.5%; right: 36.1%;">
+          <!-- 실제 발열량 B -->
+          <span><%= number_with_delimiter(real_total_cal) %></span>
+        </div>
+
+        <div class="overlay-text text-white fs-bold " style="scale: 150%; position: absolute; top: 87.8%; right: 48%;">
+          <!-- 발열량 예측 정확도 -->
+          <%
+            if real_total_cal >= expect_cal
+              result = expect_cal / real_total_cal * 100
+            else
+              result = real_total_cal / expect_cal * 100
+            end
+            result = result.round(1)
+          %>
+          <span><%= number_with_delimiter(result) %></span>
+        </div>
+
+        <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 40.5%; right: 54%;">
+          <!-- 총 보조연료 투입 열량 -->
+          <span><%= number_with_delimiter(total_cal) %></span>
+        </div>
+
+        <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 29.3%; right: 53.5%;">
+          <!-- 총 연소용공기 투입 열량 -->
+          <span><%= number_with_delimiter(total_air_cal) %></span>
+        </div>
+
+        <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 40.5%; right: 12.8%;">
+          <!-- 총 소각재 보유 열량 -->
+          <span><%= number_with_delimiter(total_have) %></span>
+        </div>
+
+        <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 40.5%; right: 2%;">
+          <!-- 총 소각재 미연분 탄소 열량 -->
+          <span><%= number_with_delimiter(total_unburned_carbon) %></span>
+        </div>
+
+        <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 18%; right: 12.3%;">
+          <!-- 총 배출가스 열량 -->
+          <span><%= number_with_delimiter(fm_103_total_cal) %></span>
+        </div>
+
+        <div class="overlay-text text-white fs-bold " style="scale: 75%; position: absolute; top: 29.3%; right: 12.6%;">
+          <!-- 총 방열 손실 열량 -->
+          <span><%= number_with_delimiter(total_loss) %></span>
+        </div>
+
+      </div>
+    </div>
+
+    <%= form_tag({ action: 'boxes_cal_save' }, { method: 'post', data: { turbo: false } }) do %>
+      <%= hidden_field_tag :total_predicted_heat, expect_cal %>
+      <%= hidden_field_tag :total_combustion_air_heat, total_air_cal %>
+      <%= hidden_field_tag :total_aux_fuel_heat, total_cal %>
+      <%= hidden_field_tag :total_exhaust_gas_heat, fm_103_total_cal %>
+      <%= hidden_field_tag :total_heat_loss, total_loss %>
+      <%= hidden_field_tag :total_residual_ash_heat, total_have %>
+      <%= hidden_field_tag :total_unburned_carbon_heat, total_unburned_carbon %>
+      <%= hidden_field_tag :actual_heat_value, real_total_cal %>
+      <%= hidden_field_tag :heat_value_pred_accuracy, result %>
+      <%
+        date_range = params[:daterange].split(" - ")
+        start_date = DateTime.strptime(date_range[0], "%m/%d %H:%M") - 9.hours
+        end_date = DateTime.strptime(date_range[1], "%m/%d %H:%M") - 9.hours
+      %>
+      <%= hidden_field_tag :start_date, start_date %>
+      <%= hidden_field_tag :end_date, end_date %>
+      <%= submit_tag '결과 저장', class: 'btn btn-primary w-100' %>
+    <% end %>
+  <% else %>
+    <div class="row g-3 gx-xl-3 mt-10 mb-5 mb-xl-5">
+      <!--begin::Col-->
+      <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-md-0 mb-xl-0" style="position: relative; display: flex; justify-content: center; align-items: center; height: 100%;">
+        <%= image_tag "/assets/media/images/cal_background.png", class: "w-100 card-rounded" %>
+      </div>
+    </div>
+<% end %>
+
+  <div class="card-body pt-5">
+    <!--begin::Item-->
+    <div class="d-flex align-items-center mb-7">
+      <table class="table table-row-bordered gy-5">
+        <thead>
+        <tr class="fw-semibold fs-6 text-muted">
+          <!--          <th>EPC</th>-->
+          <th>KKR</th>
+          <th>성상</th>
+          <th>처리기한</th>
+          <th>무게</th>
+          <th>고위 발열량/kg</th>
+          <th>저위 발열량/kg</th>
+          <th>고위 박스 발열량</th>
+          <th>저위 박스 발열량</th>
+          <th>불꽃</th>
+          <th>생성일</th>
+          <th>소각일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @boxes.each do |box| %>
+          <tr>
+            <!--            <td><%#= box.epc %></td>-->
+            <td><%= box.kkr %></td>
+            <td><%= box.category.name %></td>
+            <td><%= box.deadline.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            <td><%= box.weight %></td>
+            <td><%= box.hhv %></td>
+            <td><%= box.lhv %></td>
+            <td><%= box.box_cal_hi %></td>
+            <td><%= box.box_cal_low %></td>
+            <td><%= box.marks %></td>
+            <td><%= box.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            <td><%= box.burned_at&.localtime&.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%= render "common/footer" %>

@@ -1,0 +1,55 @@
+<%= render "common/header", page_title: "폐기물 발열량 계산 히스토리", page_sub_title: "폐기물 발열량 계산 히스토리", icon: "cube-2", color: "info" %>
+<div class="mb-xl-8">
+  <!--begin::Body-->
+  <div class="card-body pt-5">
+    <!--begin::Item-->
+    <div class="d-flex align-items-center mb-7">
+      <table class="table table-row-bordered gy-5">
+        <thead>
+        <tr class="fw-semibold fs-6 text-muted">
+          <th>총 예측 발열량</th>
+          <th>총 연소용공기 투입 열량</th>
+          <th>총 보조연료 투입 열량</th>
+          <th>총 배출가스 열량</th>
+          <th>총 방열 손실 열량</th>
+          <th>총 소각재 보유 열량</th>
+          <th>총 소각재 미연분 탄소 열량</th>
+          <th>실제 발열량</th>
+          <th>발열량 예측 정확도</th>
+          <th>이전 발열량 예측 정확도</th>
+          <th>평균 발열량 예측 정확도</th>
+          <th>소각 시작일</th>
+          <th>소각 종료일</th>
+          <th>계산일</th>
+          <th>보기</th>
+          <th>삭제</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @heat_value_predictions.each do |heat_value_prediction| %>
+          <% daterange = "#{heat_value_prediction.start_date.localtime.strftime("%m/%d %H:%M")} - #{heat_value_prediction.end_date.localtime.strftime("%m/%d %H:%M")}" %>
+          <tr>
+            <td><%= heat_value_prediction.total_predicted_heat %></td>
+            <td><%= heat_value_prediction.total_combustion_air_heat %></td>
+            <td><%= heat_value_prediction.total_aux_fuel_heat %></td>
+            <td><%= heat_value_prediction.total_exhaust_gas_heat %></td>
+            <td><%= heat_value_prediction.total_heat_loss %></td>
+            <td><%= heat_value_prediction.total_residual_ash_heat %></td>
+            <td><%= heat_value_prediction.total_unburned_carbon_heat %></td>
+            <td><%= heat_value_prediction.actual_heat_value %></td>
+            <td><%= heat_value_prediction.heat_value_pred_accuracy %></td>
+            <td><%= heat_value_prediction.prev_heat_value_pred_accuracy %></td>
+            <td><%= heat_value_prediction.avg_heat_value_pred_accuracy %></td>
+            <td><%= heat_value_prediction.start_date.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            <td><%= heat_value_prediction.end_date.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            <td><%= heat_value_prediction.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            <td><%= link_to '보기', "/boxes_cal?commit=검색&daterange=#{ERB::Util.url_encode(daterange)}", class: 'text-warning fw-bold' %></td>
+            <td><%= link_to '삭제', heat_value_prediction_path(heat_value_prediction), method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-danger fw-bold' %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%= render "common/footer" %>

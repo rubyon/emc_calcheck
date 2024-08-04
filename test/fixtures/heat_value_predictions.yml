@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_predicted_heat: 1.5
+  total_combustion_air_heat: 1.5
+  total_aux_fuel_heat: 1.5
+  total_exhaust_gas_heat: 1.5
+  total_heat_loss: 1.5
+  total_residual_ash_heat: 1.5
+  total_unburned_carbon_heat: 1.5
+  actual_heat_value: 1.5
+  heat_value_pred_accuracy: 1.5
+  prev_heat_value_pred_accuracy: 1.5
+  avg_heat_value_pred_accuracy: 1.5
+
+two:
+  total_predicted_heat: 1.5
+  total_combustion_air_heat: 1.5
+  total_aux_fuel_heat: 1.5
+  total_exhaust_gas_heat: 1.5
+  total_heat_loss: 1.5
+  total_residual_ash_heat: 1.5
+  total_unburned_carbon_heat: 1.5
+  actual_heat_value: 1.5
+  heat_value_pred_accuracy: 1.5
+  prev_heat_value_pred_accuracy: 1.5
+  avg_heat_value_pred_accuracy: 1.5

@@ -3,8 +3,8 @@ class ElementsController < ApplicationController
 
   def index
     if params[:category].present?
-      @categories = Category.where(code: params[:category])
-      @category_title = @categories.first.name
+      @categories = Category.where( id: params[:category])
+      @category_title = @categories.name
     else
       @categories = Category.all
       @category_title = '전체 보기'
@@ -15,8 +15,8 @@ class ElementsController < ApplicationController
     @categories = Category.all
     @element = Element.new
     if params[:category].present?
-      @element.category_id = params[:category]
-      @category_title = Category.find_by_code(params[:category]).name
+      @element.category_id = Category.find(params[:category]).id
+      @category_title = Category.find(params[:category]).name
     end
     if params[:season].present?
       @element.season = params[:season]
@@ -28,7 +28,7 @@ class ElementsController < ApplicationController
     @element = Element.new(element_params)
 
     if @element.save
-      redirect_to elements_path(category: @element.category.code), notice: '성분 셍성을 성공 하였습니다..'
+      redirect_to elements_path(category: @element.category.id), notice: '성분 셍성을 성공 하였습니다..'
     else
       render :new, status: :unprocessable_entity
     end

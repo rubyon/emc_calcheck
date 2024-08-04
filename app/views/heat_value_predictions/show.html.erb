@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @heat_value_prediction %>
+
+<div>
+  <%= link_to "Edit this heat value prediction", edit_heat_value_prediction_path(@heat_value_prediction) %> |
+  <%= link_to "Back to heat value predictions", heat_value_predictions_path %>
+
+  <%= button_to "Destroy this heat value prediction", @heat_value_prediction, method: :delete %>
+</div>

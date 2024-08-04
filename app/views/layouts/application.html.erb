@@ -3,7 +3,7 @@
 <!--begin::Head-->
 <head>
   <base href=""/>
-  <title>환경시설관리주식회사 발열량 예측 시스템</title>
+  <title>리뉴어스 발열량 예측 시스템</title>
   <meta charset="utf-8"/>
   <meta name="description" content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now and get life-time updates for free."/>
   <meta name="keywords" content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon"/>
@@ -25,6 +25,7 @@
   <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
   <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
   <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+  <link href="/assets/css/style.custom.css" rel="stylesheet" type="text/css"/>
   <!--end::Global Stylesheets Bundle-->
   <script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
   <%= csrf_meta_tags %>
@@ -32,6 +33,9 @@
 
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
+
+  <script src="/js/jquery-3.6.4.js"></script>
+  <script src="/js/rails.min.js"></script>
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -84,7 +88,7 @@ if (document.documentElement) {
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
           <a href="/" class="d-lg-none">
-            <img alt="Logo" src="/assets/media/logos/emc_logo_short.png" class="h-30px"/>
+            <img alt="Logo" src="/assets/media/logos/renewus_horizontal_green_white.png" class="h-30px"/>
           </a>
         </div>
         <!--end::Mobile logo-->
@@ -98,7 +102,7 @@ if (document.documentElement) {
               <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                 <!--begin:Menu link-->
                 <span class="menu-link">
-                  <span class="menu-title fs-2x">환경시설관리주식회사 발열량 예측 시스템</span>
+                  <span class="menu-title fs-2x">리뉴어스 발열량 예측 시스템</span>
                 </span>
               </div>
             </div>
@@ -120,6 +124,7 @@ if (document.documentElement) {
                 <span class="path10"></span>
               </i>
               <%= link_to "로그아웃", destroy_user_session_path, class: "menu-link px-5" %>
+              <%= link_to "서버리셋(5초 후 Refresh 필요)", restart_service_path, method: :post, class: "menu-link px-5" %>
             </div>
           </div>
           <!--end::Navbar-->
@@ -137,8 +142,8 @@ if (document.documentElement) {
         <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
           <!--begin::Logo image-->
           <a href="/">
-            <img alt="Logo" src="/assets/media/logos/emc_logo_short.png" class="px-4 h-30px app-sidebar-logo-default"/>
-            <img alt="Logo" src="/assets/media/logos/emc_logo_short.png" class="px-4 h-25px app-sidebar-logo-minimize"/>
+            <img alt="Logo" src="/assets/media/logos/renewus_horizontal_green_white.png" class="px-4 h-25px app-sidebar-logo-default"/>
+            <img alt="Logo" src="/assets/media/logos/renewus_horizontal_green_white.png" class="px-4 h-25px app-sidebar-logo-minimize"/>
           </a>
           <!--end::Logo image-->
         </div>
@@ -177,6 +182,29 @@ if (document.documentElement) {
                 <!--begin:Menu item-->
                 <div class="menu-item">
                   <!--begin:Menu link-->
+                  <a class="menu-link" href="/temperatures">
+												<span class="menu-icon">
+													<i class="ki-duotone ki-chart-line fs-2 text-muted">
+														<span class="path1"></span>
+														<span class="path2"></span>
+														<span class="path3"></span>
+                            <span class="path4"></span>
+                            <span class="path5"></span>
+                            <span class="path6"></span>
+                            <span class="path7"></span>
+                            <span class="path8"></span>
+                            <span class="path9"></span>
+                            <span class="path10"></span>
+													</i>
+												</span>
+                    <span class="menu-title">센서 히스토리</span>
+                  </a>
+                  <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                  <!--begin:Menu link-->
                   <a class="menu-link" href="/boxes">
 												<span class="menu-icon">
 													<i class="ki-duotone ki-cube-2 fs-2 text-info">
@@ -197,6 +225,79 @@ if (document.documentElement) {
                   <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
+
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                  <!--begin:Menu link-->
+                  <a class="menu-link" href="/boxes_update">
+												<span class="menu-icon">
+													<i class="ki-duotone ki-calendar fs-2 text-white">
+														<span class="path1"></span>
+														<span class="path2"></span>
+														<span class="path3"></span>
+                            <span class="path4"></span>
+                            <span class="path5"></span>
+                            <span class="path6"></span>
+                            <span class="path7"></span>
+                            <span class="path8"></span>
+                            <span class="path9"></span>
+                            <span class="path10"></span>
+													</i>
+												</span>
+                    <span class="menu-title">폐기물 소각일 업데이트</span>
+                  </a>
+                  <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                  <!--begin:Menu link-->
+                  <a class="menu-link" href="/boxes_cal">
+												<span class="menu-icon">
+													<i class="ki-duotone ki-calculator fs-2 text-white">
+														<span class="path1"></span>
+														<span class="path2"></span>
+														<span class="path3"></span>
+                            <span class="path4"></span>
+                            <span class="path5"></span>
+                            <span class="path6"></span>
+                            <span class="path7"></span>
+                            <span class="path8"></span>
+                            <span class="path9"></span>
+                            <span class="path10"></span>
+													</i>
+												</span>
+                    <span class="menu-title">폐기물 발열량 계산</span>
+                  </a>
+                  <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+
+								<!--begin:Menu item-->
+								<div class="menu-item">
+									<!--begin:Menu link-->
+									<a class="menu-link" href="/heat_value_predictions">
+												<span class="menu-icon">
+													<i class="ki-duotone ki-time fs-2 text-white">
+														<span class="path1"></span>
+														<span class="path2"></span>
+														<span class="path3"></span>
+                            <span class="path4"></span>
+                            <span class="path5"></span>
+                            <span class="path6"></span>
+                            <span class="path7"></span>
+                            <span class="path8"></span>
+                            <span class="path9"></span>
+                            <span class="path10"></span>
+													</i>
+												</span>
+										<span class="menu-title">폐기물 발열량 계산 히스토리</span>
+									</a>
+									<!--end:Menu link-->
+								</div>
+								<!--end:Menu item-->
+
                 <!--begin:Menu item-->
                 <div class="menu-item">
                   <!--begin:Menu link-->
@@ -293,7 +394,7 @@ if (document.documentElement) {
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link <%= "active" if category.code.to_s == params[:category] %>" href="/elements?category=<%= category.code %>">
+                        <a class="menu-link <%= "active" if category.id.to_s == params[:category] %>" href="/elements?category=<%= category.id %>">
 														<span class="menu-bullet">
 															<span class="bullet bullet-dot"></span>
 														</span>
@@ -359,7 +460,7 @@ if (document.documentElement) {
             <!--begin::Copyright-->
             <div class="text-dark order-2 order-md-1">
               <span class="text-muted fw-semibold me-1">COPYRIGHT &copy; 2023</span>
-              <a href="https://www.emc-env.com" target="_blank" class="text-gray-800 text-hover-primary">emc-env. ALL
+              <a href="https://renewus.co.kr" target="_blank" class="text-gray-800 text-hover-primary">renewus. ALL
                 RIGHTS RESERVED.</a>
             </div>
             <!--end::Copyright-->

@@ -19,7 +19,7 @@ class ApiController < ApplicationController
       else
         element = Element.where(category_id: category.id, season: get_season).last
         # lhv_temp 값을 확인
-        if element.hhv_temp.blank?
+        if element.hhv_temp == 0
           @box_cal_hi = element.instance_eval(formula.hhv_formula) * weight
           @hhv = element.instance_eval(formula.hhv_formula)
         else
@@ -27,7 +27,7 @@ class ApiController < ApplicationController
           @hhv = element.hhv_temp
         end
 
-        if element.lhv_temp.blank?
+        if element.lhv_temp == 0
           @box_cal_low = element.instance_eval(formula.lhv_formula) * weight
           @lhv = element.instance_eval(formula.lhv_formula)
         else
@@ -54,7 +54,7 @@ class ApiController < ApplicationController
         @marks = 0
       end
 
-      @box = Box.new
+      @box = Box.find_or_initialize_by(kkr: json_params["kkr"])
       @box.epc = json_params["epc"]
       @box.kkr = json_params["kkr"]
       @box.category = category
@@ -80,4 +80,24 @@ class ApiController < ApplicationController
       marks: @marks
     }
   end
+
+  def burned
+    begin
+      @box = Box.find_by_epc(params[:epc])
+      @box.burned_at = DateTime.now
+      @box.save
+      burned = true
+    rescue
+      burned = false
+    end
+
+    render json: {
+      burned: burned
+    }
+  end
+
+  def restart_service
+    system("sudo systemctl restart emc.service")
+  end
+
 end

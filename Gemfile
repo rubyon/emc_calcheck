@@ -70,3 +70,7 @@ end
 gem "mysql2"
 gem "devise", "~> 4.9"
 gem "pagy"
+gem "foreman"
+gem 'dotenv-rails'                            # .env 사용을 위한 GEM
+gem 'websocket-client-simple'
+gem 'redis'

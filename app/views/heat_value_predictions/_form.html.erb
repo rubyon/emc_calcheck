@@ -1,0 +1,72 @@
+<%= form_with(model: heat_value_prediction) do |form| %>
+  <% if heat_value_prediction.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(heat_value_prediction.errors.count, "error") %> prohibited this heat_value_prediction from being saved:</h2>
+
+      <ul>
+        <% heat_value_prediction.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :total_predicted_heat, style: "display: block" %>
+    <%= form.text_field :total_predicted_heat %>
+  </div>
+
+  <div>
+    <%= form.label :total_combustion_air_heat, style: "display: block" %>
+    <%= form.text_field :total_combustion_air_heat %>
+  </div>
+
+  <div>
+    <%= form.label :total_aux_fuel_heat, style: "display: block" %>
+    <%= form.text_field :total_aux_fuel_heat %>
+  </div>
+
+  <div>
+    <%= form.label :total_exhaust_gas_heat, style: "display: block" %>
+    <%= form.text_field :total_exhaust_gas_heat %>
+  </div>
+
+  <div>
+    <%= form.label :total_heat_loss, style: "display: block" %>
+    <%= form.text_field :total_heat_loss %>
+  </div>
+
+  <div>
+    <%= form.label :total_residual_ash_heat, style: "display: block" %>
+    <%= form.text_field :total_residual_ash_heat %>
+  </div>
+
+  <div>
+    <%= form.label :total_unburned_carbon_heat, style: "display: block" %>
+    <%= form.text_field :total_unburned_carbon_heat %>
+  </div>
+
+  <div>
+    <%= form.label :actual_heat_value, style: "display: block" %>
+    <%= form.text_field :actual_heat_value %>
+  </div>
+
+  <div>
+    <%= form.label :heat_value_pred_accuracy, style: "display: block" %>
+    <%= form.text_field :heat_value_pred_accuracy %>
+  </div>
+
+  <div>
+    <%= form.label :prev_heat_value_pred_accuracy, style: "display: block" %>
+    <%= form.text_field :prev_heat_value_pred_accuracy %>
+  </div>
+
+  <div>
+    <%= form.label :avg_heat_value_pred_accuracy, style: "display: block" %>
+    <%= form.text_field :avg_heat_value_pred_accuracy %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -9,7 +9,7 @@
   <!--begin::Input group-->
   <div class="input-group mb-5">
     <span class="input-group-text" style="width:150px;" id="category">성상</span>
-    <%= form.collection_select :category_id, @categories, :id, :name, {}, { disabled: true, class: 'form-select' } %>
+    <%= form.collection_select :category_id, @categories, :id, :name, {}, { class: 'form-select' } %>
     <% element.errors.full_messages_for(:category_id).each do |message| %>
       <div><%= message %></div>
     <% end %>
@@ -110,7 +110,7 @@
   <!--begin::Input group-->
   <div class="input-group mb-5">
     <span class="input-group-text" style="width:150px;" id="season">계절</span>
-    <%= form.select :season, [['봄', 'spring'], ['여름', 'summer'], ['가을', 'autumn'], ['겨울', 'winter']], {}, { disabled: true, class: 'form-select' }  %>
+    <%= form.select :season, [['봄', 'spring'], ['여름', 'summer'], ['가을', 'autumn'], ['겨울', 'winter']], {}, { class: 'form-select' }  %>
     <% element.errors.full_messages_for(:season).each do |message| %>
       <div><%= message %></div>
     <% end %>

@@ -105,9 +105,15 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (3.1.0)
+    dotenv-rails (3.1.0)
+      dotenv (= 3.1.0)
+      railties (>= 6.1)
     drb (2.1.1)
       ruby2_keywords
     erubi (1.12.0)
+    event_emitter (0.2.6)
+    foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -198,6 +204,10 @@ GEM
     rake (13.1.0)
     rdoc (6.5.0)
       psych (>= 4.0.0)
+    redis (5.2.0)
+      redis-client (>= 0.22.0)
+    redis-client (0.22.1)
+      connection_pool
     regexp_parser (2.8.2)
     reline (0.3.9)
       io-console (~> 0.5)
@@ -239,6 +249,9 @@ GEM
       railties (>= 6.0.0)
     webrick (1.8.1)
     websocket (1.2.10)
+    websocket-client-simple (0.8.0)
+      event_emitter
+      websocket
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -254,12 +267,15 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
+  dotenv-rails
+  foreman
   importmap-rails
   jbuilder
   mysql2
   pagy
   puma (>= 5.0)
   rails (~> 7.1.1)
+  redis
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
@@ -267,6 +283,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  websocket-client-simple
 
 RUBY VERSION
    ruby 3.2.2p53

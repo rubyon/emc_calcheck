@@ -1,5 +1,47 @@
 <%= render "common/header", page_title: "폐기물 목록", page_sub_title: "폐기물 목록", icon: "cube-2", color: "info" %>
-<div class="card card-xl-stretch mb-xl-8">
+<div class="mb-xl-8">
+  <%= form_tag({action: 'index'}, {method: 'get', data: { turbo: false }}) do %>
+    <div class="mb-0">
+      <label class="form-label">시간 범위 지정</label>
+      <%= text_field_tag :daterange, params[:daterange], class: 'form-control form-control-solid', placeholder: 'Pick date rage', id: 'kt_daterangepicker_2' %>
+    </div>
+    <script type="text/javascript" src="/js/moment.min.js"></script>
+    <script type="text/javascript" src="/js/daterangepicker.min.js"></script>
+    <script>
+        $(function() {
+            // Extract the daterange parameter from the URL.
+            const urlParams = new URLSearchParams(window.location.search);
+            const dateRangeParam = urlParams.get('daterange');
+
+            let startDate, endDate;
+
+            if(dateRangeParam) {
+                // Split into start and end dates
+                let dateRange = dateRangeParam.split(" - ");
+
+                // Parse the dates
+                startDate = moment(dateRange[0], 'M/D HH:mm');
+                endDate = moment(dateRange[1], 'M/D HH:mm');
+            } else {
+                // Default start and end date
+                startDate = moment().startOf("day");
+                endDate = moment().startOf("hour").add(1, "hour");
+            }
+
+            $('#kt_daterangepicker_2').daterangepicker({
+                timePicker: true,
+                timePicker24Hour: true, // 24시간 형식으로 설정
+                startDate: startDate,
+                endDate: endDate,
+                locale: {format: 'M/D HH:mm'} // 24시간 형식으로 설정
+            }, function(start, end, label) {
+                $('#kt_daterangepicker_2').val(start.format('M/D HH:mm') + ' - ' + end.format('M/D HH:mm'));
+            });
+        });
+    </script>
+    <%= submit_tag '검색', class: 'btn btn-primary' %>
+    <%= link_to 'CSV 로 저장', "/boxes/download?daterange=#{params[:daterange]}", method: :get, data: {turbo: false}, class: 'btn btn-warning' %>
+  <% end %>
   <!--begin::Body-->
   <div class="card-body pt-5">
     <!--begin::Item-->
@@ -7,7 +49,7 @@
       <table class="table table-row-bordered gy-5">
         <thead>
         <tr class="fw-semibold fs-6 text-muted">
-          <th>EPC</th>
+<!--          <th>EPC</th>-->
           <th>KKR</th>
           <th>성상</th>
           <th>처리기한</th>
@@ -18,15 +60,16 @@
           <th>저위 박스 발열량</th>
           <th>불꽃</th>
           <th>생성일</th>
+          <th>소각일</th>
         </tr>
         </thead>
         <tbody>
         <% @boxes.each do |box| %>
           <tr>
-            <td><%= box.epc %></td>
+<!--            <td><%#= box.epc %></td>-->
             <td><%= box.kkr %></td>
             <td><%= box.category.name %></td>
-            <td><%= box.deadline %></td>
+            <td><%= box.deadline.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
             <td><%= box.weight %></td>
             <td><%= box.hhv %></td>
             <td><%= box.lhv %></td>
@@ -34,6 +77,7 @@
             <td><%= box.box_cal_low %></td>
             <td><%= box.marks %></td>
             <td><%= box.created_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            <td><%= box.burned_at&.localtime&.strftime("%Y-%m-%d %H:%M:%S") %></td>
           </tr>
         <% end %>
         </tbody>
